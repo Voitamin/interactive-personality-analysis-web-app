@@ -1,14 +1,17 @@
 # Interactive Personality Analysis Web App
 
-Public portfolio snapshot of a Tencent CloudBase web app I built for large-scale personality test experiences and share-driven result pages.
+Public portfolio snapshot of a Tencent CloudBase web app I built for a large-scale interactive analysis experience with share-driven result pages.
 
 ## Product and deployment snapshots
 
 ![Archive desktop view](docs/screenshots/archive-desktop.png)
+Archive / result surface from the deployed frontend.
 
 ![CloudBase usage overview](docs/screenshots/cloudbase-usage.png)
+CloudBase usage overview during active production periods.
 
 ![Total submissions snapshot](docs/screenshots/submission-count.png)
+Production metadata showing cumulative submission count.
 
 ## Frontend and CloudBase flow
 
@@ -32,7 +35,7 @@ flowchart LR
 
 ## Highlights
 
-- Reached 13,000+ cumulative completions in production use
+- Reached 13,000+ cumulative completions in production deployment
 - Configuration-driven scoring and result generation
 - Cloud-backed submission tracking, rarity analytics, and rate limiting
 - Rich user-facing result flows, rarity layers, and secondary atlas views
