@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Portfolio placeholder result card</title>
+  <desc id="desc">Abstract placeholder artwork used in the public repository.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="45%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#f43f5e"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fafc" stop-opacity="0.94"/>
+      <stop offset="100%" stop-color="#dbeafe" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <circle cx="220" cy="200" r="160" fill="#fef08a" opacity="0.28"/>
+  <circle cx="980" cy="210" r="220" fill="#c4b5fd" opacity="0.22"/>
+  <circle cx="920" cy="940" r="250" fill="#86efac" opacity="0.18"/>
+  <path d="M90 980C260 780 410 700 620 730S930 830 1110 640" fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="18"/>
+  <path d="M100 860C260 700 480 560 740 580S980 680 1120 520" fill="none" stroke="#ffffff" stroke-opacity="0.14" stroke-width="8"/>
+  <rect x="120" y="120" width="960" height="960" rx="44" fill="url(#card)" stroke="#ffffff" stroke-opacity="0.35"/>
+  <rect x="180" y="180" width="840" height="840" rx="36" fill="#0f172a" fill-opacity="0.82" stroke="#67e8f9" stroke-opacity="0.5"/>
+  <path d="M260 770L460 470L620 610L760 350L940 770Z" fill="#38bdf8" fill-opacity="0.3"/>
+  <path d="M280 760L470 520L610 630L760 430L920 760Z" fill="#f472b6" fill-opacity="0.35"/>
+  <circle cx="420" cy="400" r="72" fill="#fef08a" fill-opacity="0.9"/>
+  <circle cx="760" cy="300" r="54" fill="#67e8f9" fill-opacity="0.82"/>
+  <rect x="250" y="860" width="700" height="24" rx="12" fill="#ffffff" fill-opacity="0.86"/>
+  <rect x="250" y="904" width="540" height="18" rx="9" fill="#e2e8f0" fill-opacity="0.72"/>
+  <text x="250" y="268" fill="#e2e8f0" font-size="42" font-family="Segoe UI, Arial, sans-serif" letter-spacing="8">PUBLIC PORTFOLIO PLACEHOLDER</text>
+  <text x="250" y="824" fill="#ffffff" font-size="88" font-weight="700" font-family="Segoe UI, Arial, sans-serif">Result Artwork Removed</text>
+</svg>

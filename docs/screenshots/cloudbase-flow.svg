@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">CloudBase frontend and function flow</title>
+  <desc id="desc">Architecture overview for the WMTI public portfolio repository.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <text x="70" y="92" fill="#f8fafc" font-size="44" font-weight="700" font-family="Segoe UI, Arial, sans-serif">Frontend / CloudBase flow</text>
+  <text x="70" y="130" fill="#94a3b8" font-size="22" font-family="Segoe UI, Arial, sans-serif">Portfolio-safe overview of the live deployment shape behind the app.</text>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="70" y="190" width="280" height="150" rx="24" fill="#f8fafc"/>
+    <text x="102" y="246" fill="#0f172a" font-size="30" font-weight="700">Static frontend</text>
+    <text x="102" y="288" fill="#475569" font-size="20">index.html</text>
+    <text x="102" y="316" fill="#475569" font-size="20">persona_atlas.html</text>
+    <text x="102" y="344" fill="#475569" font-size="20">JSON-driven content and assets</text>
+    <rect x="500" y="110" width="280" height="150" rx="24" fill="#e0f2fe"/>
+    <text x="532" y="166" fill="#0f172a" font-size="30" font-weight="700">resolveResult</text>
+    <text x="532" y="208" fill="#334155" font-size="20">Structured scoring</text>
+    <text x="532" y="236" fill="#334155" font-size="20">Result generation</text>
+    <rect x="500" y="286" width="280" height="150" rx="24" fill="#fdf2f8"/>
+    <text x="532" y="342" fill="#0f172a" font-size="30" font-weight="700">submitResultStat</text>
+    <text x="532" y="384" fill="#334155" font-size="20">Submission stats</text>
+    <text x="532" y="412" fill="#334155" font-size="20">Rarity analytics</text>
+    <rect x="500" y="462" width="280" height="150" rx="24" fill="#ecfccb"/>
+    <text x="532" y="518" fill="#0f172a" font-size="30" font-weight="700">oracleLab</text>
+    <text x="532" y="560" fill="#334155" font-size="20">Progressive unlocks</text>
+    <text x="532" y="588" fill="#334155" font-size="20">Token-gated interaction</text>
+    <rect x="930" y="190" width="280" height="150" rx="24" fill="#f8fafc"/>
+    <text x="962" y="246" fill="#0f172a" font-size="30" font-weight="700">CloudBase data</text>
+    <text x="962" y="288" fill="#475569" font-size="20">Stats collection</text>
+    <text x="962" y="316" fill="#475569" font-size="20">Rate limits / user state</text>
+    <text x="962" y="344" fill="#475569" font-size="20">Runtime-configured secrets</text>
+    <path d="M350 265H470" stroke="#38bdf8" stroke-width="8" stroke-linecap="round"/>
+    <path d="M780 185H900V265H900" stroke="#f472b6" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M780 361H930" stroke="#f59e0b" stroke-width="8" stroke-linecap="round"/>
+    <path d="M780 537H900V339" stroke="#84cc16" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <polygon points="470,265 446,252 446,278" fill="#38bdf8"/>
+    <polygon points="930,265 906,252 906,278" fill="#f472b6"/>
+    <polygon points="930,361 906,348 906,374" fill="#f59e0b"/>
+    <polygon points="900,339 888,363 914,363" fill="#84cc16"/>
+  </g>
+</svg>

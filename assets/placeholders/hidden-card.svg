@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Portfolio placeholder hidden card</title>
+  <desc id="desc">Abstract placeholder artwork for hidden or unlockable content.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#020617"/>
+      <stop offset="55%" stop-color="#312e81"/>
+      <stop offset="100%" stop-color="#7c2d12"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <circle cx="600" cy="600" r="280" fill="#fde68a" fill-opacity="0.12"/>
+  <circle cx="600" cy="600" r="180" fill="#f8fafc" fill-opacity="0.08"/>
+  <path d="M600 170L810 360L770 900H430L390 360Z" fill="#111827" stroke="#fef3c7" stroke-opacity="0.55" stroke-width="14"/>
+  <path d="M600 290L705 395L685 805H515L495 395Z" fill="#f59e0b" fill-opacity="0.18"/>
+  <path d="M250 970L600 250L950 970" fill="none" stroke="#fef08a" stroke-opacity="0.28" stroke-width="28"/>
+  <text x="600" y="500" fill="#fef3c7" font-size="104" font-weight="700" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif">Hidden Path</text>
+  <text x="600" y="610" fill="#e5e7eb" font-size="42" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif">Original game artwork removed from public repo</text>
+</svg>

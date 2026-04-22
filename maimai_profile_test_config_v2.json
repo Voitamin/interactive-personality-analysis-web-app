@@ -846,7 +846,7 @@
       "summary": "你对“机厅秩序”有一种超越常人的责任感。可惜这种责任感有时并不止步于观察，而会进一步发展为点评、教育、提醒，甚至公开审判。机厅在你眼里像一片需要被规范、被管理、被纠正的领土。你当然未必总是恶意，只是有时会忘了：不是每一个让你不舒服的瞬间，都值得被处理成公共事件。",
       "song": {
         "title": "《the EmpErroR》",
-        "image": "./wmmi/hidden_arcade_emperor.png",
+        "image": "./assets/placeholders/hidden-card.svg",
         "alt": "机厅皇帝对应曲绘",
         "display_title": "EMP-ERROR"
       }
@@ -866,7 +866,7 @@
         "summary": "你在当前测试界面停留超过了一个小时。无论中间是在认真琢磨、挂机放空，还是被别的事临时吸走注意力，你都已经把“长”考精神贯彻到了测试本身。",
         "song": {
           "title": "《False Amber (from the Black Bazaar, Or by A Kervan Trader from the Lands Afar, Or Buried Beneath the Shifting Sands That Lead Everywhere but Nowhere)》",
-          "image": "./wmmi/special_long_stay.png",
+          "image": "./assets/placeholders/badge-card.svg",
           "alt": "挂机常驻型对应曲绘",
           "display_title": "TIME-OUT"
         }
@@ -879,7 +879,7 @@
         "summary": "你在全部常规题里都选了同一个选项。就好像一直在按1号键一样，不知道的还以为在打全世界共通节奏感测试。",
         "song": {
           "title": "《全世界共通リズム感テスト》",
-          "image": "./wmmi/special_same_answer.png",
+          "image": "./assets/placeholders/badge-card.svg",
           "alt": "一键到底对应曲绘",
           "display_title": "RHY-THM"
         }
@@ -1161,97 +1161,97 @@
     "outer_by_type": {
       "闭环修车手": {
         "title": "《CYCLES》",
-        "image": "./wmmi/O01.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "闭环修车手对应曲绘",
         "display_title": "CY-CLES"
       },
       "单机巡航者": {
         "title": "《チエルカ／エソテリカ》",
-        "image": "./wmmi/O02.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "单机巡航者对应曲绘",
         "display_title": "CIER-CA"
       },
       "抽象苦行僧": {
         "title": "《Moon of Noon》",
-        "image": "./wmmi/O03.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "抽象苦行僧对应曲绘",
         "display_title": "MOON-NOON"
       },
       "自带镜头感": {
         "title": "《チューリングの跡》",
-        "image": "./wmmi/O04.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "自带镜头感对应曲绘",
         "display_title": "TU-RING"
       },
       "硬核单挑王": {
         "title": "《BATTLE NO.1》",
-        "image": "./wmmi/O05.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "硬核单挑王对应曲绘",
         "display_title": "BATTLE-NO1"
       },
       "游猎征服者": {
         "title": "《World Vanquisher》",
-        "image": "./wmmi/O06.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "游猎征服者对应曲绘",
         "display_title": "VAN-QUISHER"
       },
       "断片越级狂": {
         "title": "《WiPE OUT MEMORIES》",
-        "image": "./wmmi/O07.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "断片越级狂对应曲绘",
         "display_title": "WIPE-OM"
       },
       "狂暴单刷BOSS": {
         "title": "《TiamaT:F minor》",
-        "image": "./wmmi/O08.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "狂暴单刷BOSS对应曲绘",
         "display_title": "TIAMAT-F"
       },
       "双排复读机": {
         "title": "《184億回のマルチトニック》",
-        "image": "./wmmi/O09.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "双排复读机对应曲绘",
         "display_title": "184-YIHUI"
       },
       "祥和拼机派": {
         "title": "《プリズム△▽リズム》",
-        "image": "./wmmi/O10.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "祥和拼机派对应曲绘",
         "display_title": "PRISM"
       },
       "双排相声组": {
         "title": "《Oshama Scramble!》",
-        "image": "./wmmi/O11.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "双排相声组对应曲绘",
         "display_title": "O-SHAMA"
       },
       "全场引燃者": {
         "title": "《Cthugha》",
-        "image": "./wmmi/O12.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "全场引燃者对应曲绘",
         "display_title": "CTHU-GHA"
       },
       "拼机搏击手": {
         "title": "《QZKago Requiem》",
-        "image": "./wmmi/O13.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "拼机搏击手对应曲绘",
         "display_title": "QZ-KAGO"
       },
       "羁绊越级车头": {
         "title": "《系ぎて》",
-        "image": "./wmmi/O14.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "羁绊越级车头对应曲绘",
         "display_title": "TSUNA-GITE"
       },
       "魔法对轰客": {
         "title": "《Latent Kingdom》",
-        "image": "./wmmi/O15.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "魔法对轰客对应曲绘",
         "display_title": "L-K"
       },
       "合骚乱入型": {
         "title": "《星界ちゃんと可不ちゃんのおつかい合騒曲》",
-        "image": "./wmmi/O16.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "合骚乱入型对应曲绘",
         "display_title": "SEKAI-KAFU"
       }
@@ -1259,97 +1259,97 @@
     "inner_by_type": {
       "原始本能派": {
         "title": "《Hurtling Boys》",
-        "image": "./wmmi/I01.jpg",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "原始本能派对应曲绘",
         "display_title": "DASHOU-ZI"
       },
       "野生直觉流": {
         "title": "《Prophesy One》",
-        "image": "./wmmi/I02.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "野生直觉流对应曲绘",
         "display_title": "YUYAN-1"
       },
       "情怀共鸣者": {
         "title": "《初音ミクの消失》",
-        "image": "./wmmi/I03.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "情怀共鸣者对应曲绘",
         "display_title": "DX-XIAOSHI"
       },
       "派对造浪者": {
         "title": "《QUATTUORUX》",
-        "image": "./wmmi/I04.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "派对造浪者对应曲绘",
         "display_title": "QUAT-TUO"
       },
       "深情考据学者": {
         "title": "《Destr0yer》",
-        "image": "./wmmi/I05.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "深情考据学者对应曲绘",
         "display_title": "DESTR0-yer"
       },
       "隐世解构师": {
         "title": "《Regulus》",
-        "image": "./wmmi/I06.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "隐世解构师对应曲绘",
         "display_title": "REGU-LUS"
       },
       "殿堂级真爱粉": {
         "title": "《BIRTH》",
-        "image": "./wmmi/I07.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "殿堂级真爱粉对应曲绘",
         "display_title": "BIR-TH"
       },
       "灵动战术家": {
         "title": "《sølips》",
-        "image": "./wmmi/I08.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "灵动战术家对应曲绘",
         "display_title": "SOLI-PS"
       },
       "孤狼推分机器": {
         "title": "《Raven Emperor》",
-        "image": "./wmmi/I09.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "孤狼推分机器对应曲绘",
         "display_title": "RAVEN"
       },
       "实用主义独行侠": {
         "title": "《VeRForTe αRtE:VEiN》",
-        "image": "./wmmi/I10.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "实用主义独行侠对应曲绘",
         "display_title": "ZHONG-LOU"
       },
       "版本前沿狂战士": {
         "title": "《雨露霜雪》",
-        "image": "./wmmi/I11.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "版本前沿狂战士对应曲绘",
         "display_title": "YUYU-YUYU"
       },
       "敏锐赏金猎人": {
         "title": "《ViRTUS》",
-        "image": "./wmmi/I12.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "敏锐赏金猎人对应曲绘",
         "display_title": "ViR-TUS"
       },
       "绝对理性工程师": {
         "title": "《GEOMETRIC DANCE》",
-        "image": "./wmmi/I13.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "绝对理性工程师对应曲绘",
         "display_title": "GEO-DANCE"
       },
       "隐秘黑客": {
         "title": "《神威》",
-        "image": "./wmmi/I14.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "隐秘黑客对应曲绘",
         "display_title": "KA-MUI"
       },
       "正统名门精英": {
         "title": "《Last Samurai》",
-        "image": "./wmmi/I15.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "正统名门精英对应曲绘",
         "display_title": "SAMU-RAI"
       },
       "终极操盘手": {
         "title": "《超熊猫的周遊記（ワンダーパンダートラベラー）》",
-        "image": "./wmmi/I16.png",
+        "image": "./assets/placeholders/result-card.svg",
         "alt": "终极操盘手对应曲绘",
         "display_title": "PANDA"
       }
@@ -1373,7 +1373,7 @@
     "share_card": {
       "title": "WMTI舞萌人格测试",
       "author_credit": "作者：B站@Voitamin",
-      "qr_image_src": "./wmmi/wmti_share_qr.png",
+      "qr_image_src": "./assets/placeholders/share-qr.svg",
       "qr_target_url": "",
       "excerpt_max_chars": 100
     },

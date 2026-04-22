@@ -2,6 +2,29 @@
 
 Public portfolio snapshot of a Tencent CloudBase web app I built for large-scale personality test experiences and share-driven result pages.
 
+## UI surfaces
+
+![Experience overview](docs/screenshots/experience-overview.svg)
+
+![Archive mobile view](docs/screenshots/archive-mobile.svg)
+
+## Frontend and backend flow
+
+![CloudBase flow](docs/screenshots/cloudbase-flow.svg)
+
+## What I personally implemented
+
+- Designed and shipped the frontend quiz flow, result surfaces, archive view, and share-oriented product interactions
+- Built the configuration-driven scoring and result engine backed by `maimai_profile_test_config_v2.json`
+- Implemented CloudBase functions for result resolution, submission tracking, rarity analytics, and rate limiting
+- Added the archive / oracle progression layer and the supporting function-side state model
+- Drove the production deployment flow on Tencent CloudBase and iterated on real-user product polish
+
+## Public repo note
+
+This public repository intentionally replaces original game illustration assets with portfolio-safe placeholder graphics.
+The interactive logic, configuration structure, and CloudBase function code are preserved for review.
+
 ## Highlights
 
 - Reached 13,000+ cumulative completions in production use
@@ -16,6 +39,7 @@ This repository is a cleaned public version prepared for portfolio review.
 - Keeps the core frontend experience, assets, and CloudBase function code
 - Removes deployment artifacts, local backups, generated snapshots, and `node_modules`
 - Replaces production CloudBase identifiers and publishable keys with placeholders
+- Replaces copyrighted source artwork with public-safe placeholder visuals
 
 ## Project Structure
 
@@ -23,6 +47,7 @@ This repository is a cleaned public version prepared for portfolio review.
 - `persona_atlas.html`: follow-up atlas / rarity view
 - `maimai_profile_test_config_v2.json`: configuration-driven quiz and result content
 - `assets/`: production visual assets and embedded motion assets
+- `assets/placeholders/`: public-safe replacement visuals for removed artwork
 - `vendor/`: browser-ready CloudBase and QR code libraries
 - `cloudfunctions/`: backend logic for result resolution, submission tracking, and oracle flows
 - `docs/screenshots/`: screenshots for quick review

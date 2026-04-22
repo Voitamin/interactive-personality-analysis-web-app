@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Portfolio placeholder badge card</title>
+  <desc id="desc">Abstract placeholder artwork for title and badge assets.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#083344"/>
+      <stop offset="50%" stop-color="#0f766e"/>
+      <stop offset="100%" stop-color="#164e63"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect x="150" y="150" width="900" height="900" rx="70" fill="#ecfeff" fill-opacity="0.1" stroke="#a5f3fc" stroke-opacity="0.5" stroke-width="10"/>
+  <circle cx="360" cy="420" r="110" fill="#67e8f9" fill-opacity="0.35"/>
+  <circle cx="840" cy="420" r="110" fill="#99f6e4" fill-opacity="0.35"/>
+  <rect x="310" y="520" width="580" height="170" rx="28" fill="#0f172a" fill-opacity="0.7" stroke="#ccfbf1" stroke-opacity="0.45"/>
+  <rect x="350" y="568" width="500" height="22" rx="11" fill="#ecfeff" fill-opacity="0.92"/>
+  <rect x="350" y="614" width="410" height="18" rx="9" fill="#cffafe" fill-opacity="0.72"/>
+  <path d="M325 835L470 720L600 835L730 720L875 835" fill="none" stroke="#a5f3fc" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="600" y="345" fill="#ecfeff" font-size="64" font-weight="700" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif">Badge / Title Placeholder</text>
+  <text x="600" y="930" fill="#cffafe" font-size="38" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif">Public-safe asset replacing copyrighted source art</text>
+</svg>

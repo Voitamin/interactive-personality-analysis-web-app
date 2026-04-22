@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="title desc">
+  <title id="title">Share QR placeholder</title>
+  <desc id="desc">Placeholder tile indicating that the original share QR is not bundled in the public repository.</desc>
+  <rect width="600" height="600" rx="36" fill="#f8fafc"/>
+  <rect x="54" y="54" width="492" height="492" rx="28" fill="#0f172a"/>
+  <rect x="92" y="92" width="116" height="116" rx="12" fill="#f8fafc"/>
+  <rect x="392" y="92" width="116" height="116" rx="12" fill="#f8fafc"/>
+  <rect x="92" y="392" width="116" height="116" rx="12" fill="#f8fafc"/>
+  <rect x="242" y="92" width="48" height="48" rx="8" fill="#38bdf8"/>
+  <rect x="306" y="92" width="48" height="48" rx="8" fill="#f472b6"/>
+  <rect x="242" y="156" width="112" height="52" rx="8" fill="#f8fafc" fill-opacity="0.9"/>
+  <rect x="242" y="250" width="48" height="48" rx="8" fill="#f8fafc"/>
+  <rect x="306" y="250" width="48" height="48" rx="8" fill="#38bdf8"/>
+  <rect x="370" y="250" width="48" height="48" rx="8" fill="#f8fafc"/>
+  <rect x="178" y="250" width="48" height="48" rx="8" fill="#f8fafc"/>
+  <rect x="242" y="314" width="176" height="48" rx="8" fill="#f8fafc"/>
+  <rect x="242" y="392" width="48" height="48" rx="8" fill="#f472b6"/>
+  <rect x="306" y="392" width="112" height="48" rx="8" fill="#f8fafc"/>
+  <rect x="456" y="250" width="52" height="190" rx="10" fill="#f8fafc"/>
+  <text x="300" y="495" text-anchor="middle" fill="#f8fafc" font-size="32" font-family="Segoe UI, Arial, sans-serif">QR Placeholder</text>
+</svg>

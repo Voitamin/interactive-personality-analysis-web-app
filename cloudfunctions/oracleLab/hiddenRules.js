@@ -124,7 +124,7 @@ const sevenWonders = {
     summary: '你同时点亮了七个隐藏称号。普通的类型学已经很难解释你，剩下的更像一串只有反复试错才能拼出的暗号。你不是刚好撞进某个小彩蛋，而是把整个隐藏系统都撬开了一条缝。',
     song: {
       title: '《7 Wonders》',
-      image: './wmmi/seven_wonders.png',
+      image: './assets/placeholders/hidden-card.svg',
       alt: '7 Wonders 对应曲绘',
       display_title: '7-WONDERS'
     },
