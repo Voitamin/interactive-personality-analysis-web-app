@@ -1,0 +1,8 @@
+node_modules/
+cloudfunctions/*/node_modules/
+*.log
+*.tmp
+*.bak
+*.zip
+Thumbs.db
+.DS_Store

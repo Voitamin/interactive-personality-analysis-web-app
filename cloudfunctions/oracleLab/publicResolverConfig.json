@@ -1,0 +1,472 @@
+{
+  "version": "2.0.0",
+  "axes": {
+    "outer": [
+      "E1",
+      "E2",
+      "E3",
+      "E4"
+    ],
+    "inner": [
+      "I1",
+      "I2",
+      "I3",
+      "I4"
+    ],
+    "label": [
+      "X",
+      "M",
+      "V",
+      "T",
+      "P"
+    ]
+  },
+  "scoring": {
+    "option_score_map": {
+      "A": 1,
+      "B": 2,
+      "C": 3
+    },
+    "axis_score_range": {
+      "min": 2,
+      "max": 6
+    },
+    "two_question_direction_rule": {
+      "left_scores": [
+        2,
+        3
+      ],
+      "right_scores": [
+        5,
+        6
+      ],
+      "neutral_score": 4,
+      "tiebreak": {
+        "primary_question_index": 0,
+        "if_primary_A": "left",
+        "if_primary_C": "right",
+        "if_primary_B_secondary_A": "left",
+        "if_primary_B_secondary_C": "right",
+        "if_both_B": "left"
+      }
+    }
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "axis": "E1",
+      "axis_group": "outer",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "axis": "E1",
+      "axis_group": "outer",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "axis": "E2",
+      "axis_group": "outer",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "axis": "E2",
+      "axis_group": "outer",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "axis": "E3",
+      "axis_group": "outer",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "axis": "E3",
+      "axis_group": "outer",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "axis": "E4",
+      "axis_group": "outer",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q8",
+      "axis": "E4",
+      "axis_group": "outer",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q9",
+      "axis": "I1",
+      "axis_group": "inner",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q10",
+      "axis": "I1",
+      "axis_group": "inner",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q11",
+      "axis": "I2",
+      "axis_group": "inner",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q12",
+      "axis": "I2",
+      "axis_group": "inner",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q13",
+      "axis": "I3",
+      "axis_group": "inner",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q14",
+      "axis": "I3",
+      "axis_group": "inner",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q15",
+      "axis": "I4",
+      "axis_group": "inner",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q16",
+      "axis": "I4",
+      "axis_group": "inner",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q17",
+      "axis": "X",
+      "axis_group": "label",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q18",
+      "axis": "X",
+      "axis_group": "label",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q19",
+      "axis": "M",
+      "axis_group": "label",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q20",
+      "axis": "M",
+      "axis_group": "label",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q21",
+      "axis": "V",
+      "axis_group": "label",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q22",
+      "axis": "V",
+      "axis_group": "label",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q23",
+      "axis": "T",
+      "axis_group": "label",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q24",
+      "axis": "T",
+      "axis_group": "label",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q25",
+      "axis": "P",
+      "axis_group": "label",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "id": "q26",
+      "axis": "P",
+      "axis_group": "label",
+      "options": [
+        {
+          "key": "A"
+        },
+        {
+          "key": "B"
+        },
+        {
+          "key": "C"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2031 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WMTI 全人格图鉴</title>
+  <link rel="icon" href="data:," />
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --paper: rgba(255,255,255,0.94);
+      --paper-strong: #ffffff;
+      --ink: #1d2433;
+      --muted: #6b768c;
+      --line: #d9e2ef;
+      --cyan: #18b8c6;
+      --pink: #ff5c9e;
+      --yellow: #ffd45d;
+      --green: #39c48f;
+      --shadow: 0 18px 36px rgba(76, 92, 132, 0.14);
+      --radius: 8px;
+      --maxw: 1180px;
+      --result-label-stroke-width: 1.15px;
+      --result-label-stroke-color: rgba(14, 16, 24, 0.9);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      color: var(--ink);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: radial-gradient(circle at center, #ffb7cd 0, #ffb7cd 38%, #ff4799 100%);
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    .maimai-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      background: radial-gradient(circle at center, #ffbfd4 0, #ffb6ce 38%, #ff499a 100%);
+    }
+
+    .maimai-bg-pattern,
+    .maimai-bg-circle,
+    .maimai-bg-orbit,
+    .maimai-bg-corner,
+    .maimai-bg-tile,
+    .maimai-bg-star,
+    .maimai-bg-rotation,
+    .maimai-bg-3d {
+      position: absolute;
+    }
+
+    .maimai-bg-pattern {
+      inset: auto;
+      top: 50%;
+      left: 50%;
+      width: max(100vw, 100vh);
+      height: max(100vw, 100vh);
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background-image: url('assets/official-bg/bg_pattern.png');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      opacity: 0.44;
+      mix-blend-mode: overlay;
+      animation: wmtiPatternSpin 500s linear infinite;
+    }
+
+    .maimai-bg-circle,
+    .maimai-bg-orbit {
+      border-radius: 50%;
+    }
+
+    .maimai-bg-circle {
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .maimai-bg-circle.a {
+      width: min(116vw, 980px);
+      height: min(116vw, 980px);
+      background-image: url('assets/official-bg/circle_colorful.png');
+      opacity: 0.54;
+      mix-blend-mode: screen;
+      animation: wmtiSpinReverse 100s cubic-bezier(.01,.99,.28,.99) infinite;
+    }
+
+    .maimai-bg-circle.b {
+      width: min(144vw, 1060px);
+      height: min(128vw, 900px);
+      rotate: -18deg;
+      background-image: url('assets/official-bg/circle_yellow.png');
+      opacity: 0.9;
+      animation: wmtiTilt 80s linear alternate infinite;
+    }
+
+    .maimai-bg-circle.c {
+      width: min(88vw, 760px);
+      height: min(88vw, 760px);
+      background-image: url('assets/official-bg/circle_white.png');
+      opacity: 0.74;
+      animation: wmtiSpinReverse 110s linear infinite;
+    }
+
+    .maimai-bg-corner {
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      opacity: 0.96;
+      filter: drop-shadow(0 12px 0 rgba(0,0,0,0.08));
+    }
+
+    .maimai-bg-corner.tl {
+      top: 0;
+      left: 0;
+      width: min(100vw, 853px);
+      height: min(25vw, 150px);
+      background-image: url('assets/official-bg/pc/top_left.png');
+    }
+
+    .maimai-bg-corner.tr {
+      top: 0;
+      right: 0;
+      width: min(41vw, 316px);
+      height: min(60vw, 382px);
+      background-image: url('assets/official-bg/pc/top_right.png');
+    }
+
+    .maimai-bg-corner.bl {
+      bottom: 0;
+      left: 0;
+      width: min(30vw, 231px);
+      height: min(55vw, 429px);
+      background-image: url('assets/official-bg/pc/bottom_left.png');
+    }
+
+    .maimai-bg-corner.br {
+      bottom: 0;
+      right: 0;
+      width: min(100vw, 683px);
+      height: min(25vw, 168px);
+      background-image: url('assets/official-bg/pc/bottom_right.png');
+    }
+
+    .maimai-bg-tile,
+    .maimai-bg-star {
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      opacity: 0;
+      animation: wmtiOfficialRise linear infinite;
+    }
+
+    .maimai-bg-tile.a {
+      width: min(20vw, 216px);
+      height: min(75vw, 692px);
+      top: 30vw;
+      right: 5vw;
+      background-image: url('assets/official-bg/tile_green.png');
+      animation-duration: 12s;
+    }
+
+    .maimai-bg-tile.b {
+      width: min(17.5vw, 192px);
+      height: min(62.5vw, 593px);
+      left: 3.75vw;
+      top: 20vw;
+      background-image: url('assets/official-bg/tile_purple_left.png');
+      animation-duration: 15s;
+      animation-delay: -9s;
+    }
+
+    .maimai-bg-tile.c {
+      width: min(12.5vw, 140px);
+      height: min(37.5vw, 340px);
+      top: 12.5vw;
+      right: 20vw;
+      background-image: url('assets/official-bg/tile_purple_right.png');
+      animation-duration: 10s;
+      animation-delay: -4s;
+    }
+
+    .maimai-bg-star.a,
+    .maimai-bg-star.b {
+      background-image: url('assets/official-bg/star_pink.png');
+    }
+
+    .maimai-bg-star.c,
+    .maimai-bg-star.d {
+      background-image: url('assets/official-bg/star_yellow.png');
+    }
+
+    .maimai-bg-star.a {
+      width: 18px;
+      height: 68px;
+      left: 24%;
+      top: 16%;
+      animation-duration: 8s;
+    }
+
+    .maimai-bg-star.b {
+      width: 14px;
+      height: 56px;
+      right: 28%;
+      top: 48%;
+      animation-duration: 10s;
+      animation-delay: -3s;
+    }
+
+    .maimai-bg-star.c {
+      width: 16px;
+      height: 64px;
+      right: 4%;
+      top: 64%;
+      animation-duration: 9s;
+      animation-delay: -6s;
+    }
+
+    .maimai-bg-star.d {
+      width: 18px;
+      height: 68px;
+      top: 44%;
+      right: 38%;
+      animation-duration: 10s;
+      animation-delay: -5s;
+    }
+
+    .maimai-bg-rotation {
+      inset: 0;
+      animation: wmtiSpin 70s linear infinite;
+    }
+
+    .maimai-bg-3d {
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      filter: drop-shadow(0 12px 14px rgba(70, 78, 128, 0.16));
+    }
+
+    .maimai-bg-3d.cube-small {
+      width: 88px;
+      height: 88px;
+      top: 130px;
+      left: 80px;
+      background-image: url('assets/official-bg/3d_cube.png');
+      animation: wmtiSpin 18s linear infinite;
+    }
+
+    .maimai-bg-3d.cube {
+      width: 112px;
+      height: 102px;
+      top: 400px;
+      right: 100px;
+      background-image: url('assets/official-bg/3d_cube.png');
+      animation: wmtiSpin 25s linear reverse infinite;
+    }
+
+    .maimai-bg-3d.star-small {
+      width: 34px;
+      height: 40px;
+      top: 192px;
+      right: 506px;
+      background-image: url('assets/official-bg/3d_star_small.png');
+      animation: wmtiSpin 15s linear infinite;
+    }
+
+    .maimai-bg-3d.stars {
+      width: 93px;
+      height: 78px;
+      top: 700px;
+      right: 260px;
+      background-image: url('assets/official-bg/3d_stars.png');
+      animation: wmtiSpin 28s linear infinite;
+    }
+
+    .maimai-bg-3d.glove-blue {
+      width: 69px;
+      height: 75px;
+      top: 34px;
+      left: 702px;
+      background-image: url('assets/official-bg/3d_glove_blue.png');
+      animation: wmtiSpinReverse 20s linear infinite;
+    }
+
+    .maimai-bg-3d.glove-pink {
+      width: 108px;
+      height: 128px;
+      top: 34px;
+      left: 568px;
+      background-image: url('assets/official-bg/3d_glove_pink.png');
+      animation: wmtiSpinReverse 16s linear infinite;
+    }
+
+    .maimai-bg-orbit {
+      width: 18px;
+      height: 18px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.92), rgba(255,255,255,0.08));
+      box-shadow: 0 0 0 10px rgba(255,255,255,0.08);
+      animation: wmtiFloat 8s ease-in-out infinite alternate;
+    }
+
+    .maimai-bg-orbit.a {
+      top: 22%;
+      left: 18%;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 233, 142, 0.98), rgba(255, 233, 142, 0.12));
+    }
+
+    .maimai-bg-orbit.b {
+      top: 18%;
+      right: 20%;
+      width: 14px;
+      height: 14px;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 157, 212, 0.98), rgba(255, 157, 212, 0.12));
+      animation-delay: -2s;
+    }
+
+    .maimai-bg-orbit.c {
+      bottom: 20%;
+      right: 14%;
+      width: 22px;
+      height: 22px;
+      background: radial-gradient(circle at 30% 30%, rgba(96, 211, 255, 0.98), rgba(96, 211, 255, 0.12));
+      animation-delay: -4s;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(100% - 32px, var(--maxw));
+      margin: 0 auto;
+      padding: 34px 0 64px;
+    }
+
+    .hero {
+      display: grid;
+      gap: 18px;
+      padding: 28px;
+      border: 1px solid rgba(217,226,239,0.88);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.88);
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 6vw, 64px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 760px;
+      margin: 0;
+      color: #46536d;
+      font-size: 16px;
+      line-height: 1.75;
+      font-weight: 650;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .last-result-panel {
+      display: grid;
+      gap: 10px;
+      max-width: 860px;
+      padding: 14px;
+      border: 1px solid rgba(24,184,198,0.26);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(24,184,198,0.12), rgba(255,92,158,0.10)),
+        rgba(255,255,255,0.9);
+      box-shadow: 0 14px 26px rgba(76, 92, 132, 0.12);
+    }
+
+    .last-result-panel[hidden] {
+      display: none;
+    }
+
+    .last-result-title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 1000;
+    }
+
+    .last-result-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .last-result-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border: 1px solid rgba(24,184,198,0.24);
+      border-radius: var(--radius);
+      color: #095f68;
+      background: rgba(255,255,255,0.84);
+      font-size: 12px;
+      font-weight: 950;
+    }
+
+    .stat {
+      min-height: 74px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper-strong);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .section {
+      margin-top: 34px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: 0;
+    }
+
+    .section-count {
+      flex: 0 0 auto;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid.is-badge {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      position: relative;
+      min-width: 0;
+      border: 1px solid rgba(217,226,239,0.92);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: 0 12px 24px rgba(76, 92, 132, 0.10);
+      overflow: hidden;
+    }
+
+    .card.is-owned,
+    .label-card.is-owned {
+      border-color: rgba(255,92,158,0.72);
+      box-shadow:
+        0 0 0 2px rgba(255,255,255,0.9),
+        0 0 0 5px rgba(255,92,158,0.22),
+        0 16px 30px rgba(255,92,158,0.16);
+    }
+
+    .label-card {
+      position: relative;
+    }
+
+    .owned-ribbon {
+      position: absolute;
+      z-index: 3;
+      top: 8px;
+      right: 8px;
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 0 8px;
+      border: 1px solid rgba(255,255,255,0.82);
+      border-radius: var(--radius);
+      color: #fff;
+      background: linear-gradient(135deg, #ff2f87, #18b8c6);
+      box-shadow: 0 6px 14px rgba(76, 92, 132, 0.20);
+      font-size: 11px;
+      font-weight: 1000;
+    }
+
+    .art {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      background:
+        linear-gradient(135deg, rgba(24,184,198,0.12), rgba(255,212,93,0.14)),
+        #edf3fb;
+      overflow: hidden;
+    }
+
+    .art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .art.is-mystery {
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 52% 38%, rgba(26, 29, 38, 0.72) 0 18%, rgba(4, 5, 8, 0) 48%),
+        linear-gradient(135deg, #020204 0%, #07080c 42%, #000 100%);
+      color: rgba(255,255,255,0.78);
+      box-shadow: inset 0 0 74px rgba(0,0,0,0.92);
+    }
+
+    .art.is-mystery.has-mystery-image {
+      background: #000;
+    }
+
+    .art.is-mystery.has-mystery-image img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.62) contrast(1.28) saturate(0.92);
+      transform: scale(1.012);
+    }
+
+    .art.is-mystery::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 52%, transparent 0 42%, rgba(0,0,0,0.42) 84%, rgba(0,0,0,0.72) 100%),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.038) 0 1px, transparent 1px 4px),
+        linear-gradient(90deg, rgba(24,184,198,0.08), transparent 22% 72%, rgba(255,92,158,0.08));
+      mix-blend-mode: normal;
+      opacity: 0.74;
+      animation: mysteryScan 4.2s linear infinite;
+    }
+
+    .art.is-mystery::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent 0 14%, rgba(24,184,198,0.13) 15% 16%, transparent 17% 61%, rgba(255,92,158,0.12) 62% 63%, transparent 64%),
+        linear-gradient(180deg, transparent 0 61%, rgba(255,255,255,0.10) 62% 63%, transparent 64%),
+        radial-gradient(circle at 7% 19%, rgba(255,255,255,0.18) 0 1px, transparent 2px),
+        radial-gradient(circle at 43% 81%, rgba(255,255,255,0.14) 0 1px, transparent 2px),
+        radial-gradient(circle at 88% 37%, rgba(255,255,255,0.20) 0 1px, transparent 2px);
+      background-size: auto, auto, 71px 97px, 113px 83px, 89px 131px;
+      mix-blend-mode: screen;
+      opacity: 0.30;
+      animation: mysteryTear 1.55s steps(2, end) infinite, mysterySnowCoarse .42s steps(2, end) infinite;
+    }
+
+    .glitch-snow {
+      position: absolute;
+      z-index: 1;
+      inset: -12%;
+      pointer-events: none;
+      background:
+        radial-gradient(circle, rgba(255,255,255,0.70) 0 1px, transparent 1.6px),
+        radial-gradient(circle, rgba(24,184,198,0.30) 0 1px, transparent 1.8px),
+        radial-gradient(circle, rgba(255,92,158,0.26) 0 1px, transparent 1.8px);
+      background-size: 11px 13px, 17px 19px, 23px 29px;
+      mix-blend-mode: screen;
+      opacity: 0.24;
+      filter: contrast(180%);
+      animation: mysterySnowDrift .48s steps(3, end) infinite;
+    }
+
+    .mystery-signal {
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 11% 23%, rgba(255,255,255,0.28) 0 1px, transparent 2px),
+        radial-gradient(circle at 73% 67%, rgba(255,255,255,0.20) 0 1px, transparent 2px),
+        radial-gradient(circle at 38% 9%, rgba(24,184,198,0.20) 0 1px, transparent 2px),
+        radial-gradient(circle at 94% 84%, rgba(255,92,158,0.17) 0 1px, transparent 2px);
+      background-size: 53px 47px, 79px 61px, 97px 89px, 131px 107px;
+      mix-blend-mode: screen;
+      opacity: 0.16;
+      animation: mysterySignalNoise .95s steps(2, end) infinite;
+    }
+
+    .glitch-core {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: 78%;
+      min-height: 42%;
+      padding: 14px 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.84);
+      background: rgba(0,0,0,0.46);
+      font-size: 18px;
+      font-weight: 1000;
+      line-height: 1.2;
+      text-align: center;
+      word-break: break-all;
+      text-shadow:
+        2px 0 rgba(24,184,198,0.62),
+        -2px 0 rgba(255,92,158,0.58),
+        0 0 12px rgba(255,255,255,0.18);
+      box-shadow:
+        inset 0 0 22px rgba(0,0,0,0.64),
+        0 0 18px rgba(0,0,0,0.42);
+      animation: mysteryJitter 1.15s steps(1, end) infinite;
+    }
+
+    .art.is-mystery.has-mystery-image .glitch-core {
+      position: absolute;
+      z-index: 3;
+      top: 50%;
+      left: 50%;
+      width: 74%;
+      min-height: 0;
+      padding: 10px 8px;
+      border-color: rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.90);
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.88), rgba(8,10,18,0.66)),
+        rgba(0,0,0,0.78);
+      font-size: 14px;
+      box-shadow:
+        inset 0 0 18px rgba(0,0,0,0.76),
+        0 0 0 1px rgba(24,184,198,0.18),
+        0 0 22px rgba(0,0,0,0.62);
+      pointer-events: none;
+      animation: mysteryImageJitter 1.1s steps(1, end) infinite;
+    }
+
+    .glitch-core::before,
+    .glitch-core::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 14px 10px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      word-break: break-all;
+      pointer-events: none;
+    }
+
+    .glitch-core::before {
+      color: rgba(24,184,198,0.82);
+      transform: translate(3px, -1px);
+      clip-path: inset(0 0 55% 0);
+      animation: mysterySliceA .92s steps(2, end) infinite;
+    }
+
+    .glitch-core::after {
+      color: rgba(255,92,158,0.78);
+      transform: translate(-3px, 1px);
+      clip-path: inset(48% 0 0 0);
+      animation: mysterySliceB 1.25s steps(2, end) infinite;
+    }
+
+    .mystery-mark {
+      position: relative;
+      z-index: 1;
+      font-size: 42px;
+      font-weight: 1000;
+      letter-spacing: 0;
+    }
+
+    @keyframes mysteryScan {
+      from { background-position: center, 0 0, 0 0; }
+      to { background-position: center, 0 32px, 90px 0; }
+    }
+
+    @keyframes mysterySnowFine {
+      0%, 100% { opacity: 0.70; filter: contrast(130%); }
+      50% { opacity: 0.92; filter: contrast(210%); }
+    }
+
+    @keyframes mysterySnowCoarse {
+      0%, 100% { background-position: 0 0, 0 0, 0 0, 0 0; }
+      50% { background-position: 9px 0, 0 -11px, -7px 5px, 6px -4px; }
+    }
+
+    @keyframes mysterySnowDrift {
+      0% { transform: translate(0, 0); opacity: 0.18; }
+      33% { transform: translate(-7px, 5px); opacity: 0.34; }
+      66% { transform: translate(5px, -3px); opacity: 0.26; }
+      100% { transform: translate(0, 0); opacity: 0.18; }
+    }
+
+    @keyframes mysterySignalNoise {
+      0%, 100% { transform: translate(0, 0); opacity: 0.10; }
+      31% { transform: translate(-5px, 3px); opacity: 0.18; }
+      67% { transform: translate(4px, -2px); opacity: 0.12; }
+    }
+
+    @keyframes mysteryTear {
+      0%, 100% { transform: translateX(0); opacity: 0.28; }
+      24% { transform: translateX(-10px); opacity: 0.56; }
+      26% { transform: translateX(8px); opacity: 0.38; }
+      62% { transform: translateX(14px); opacity: 0.48; }
+      64% { transform: translateX(-4px); opacity: 0.30; }
+    }
+
+    @keyframes mysteryJitter {
+      0%, 100% { transform: translate(0, 0); }
+      12% { transform: translate(-1px, 1px); }
+      13% { transform: translate(2px, -1px); }
+      35% { transform: translate(0, 0); }
+      36% { transform: translate(2px, 1px); }
+      37% { transform: translate(-2px, 0); }
+      72% { transform: translate(0, 0); }
+      73% { transform: translate(1px, -2px); }
+    }
+
+    @keyframes mysteryImageJitter {
+      0%, 100% { transform: translate(-50%, -50%); }
+      11% { transform: translate(calc(-50% - 2px), calc(-50% + 1px)); }
+      12% { transform: translate(calc(-50% + 3px), calc(-50% - 1px)); }
+      37% { transform: translate(-50%, -50%); }
+      38% { transform: translate(calc(-50% + 2px), calc(-50% + 2px)); }
+      39% { transform: translate(calc(-50% - 3px), -50%); }
+      74% { transform: translate(-50%, -50%); }
+      75% { transform: translate(calc(-50% + 1px), calc(-50% - 3px)); }
+    }
+
+    @keyframes mysterySliceA {
+      0%, 100% { transform: translate(3px, -1px); clip-path: inset(0 0 55% 0); }
+      34% { transform: translate(8px, 0); clip-path: inset(18% 0 42% 0); }
+      66% { transform: translate(-2px, -2px); clip-path: inset(4% 0 68% 0); }
+    }
+
+    @keyframes mysterySliceB {
+      0%, 100% { transform: translate(-3px, 1px); clip-path: inset(48% 0 0 0); }
+      28% { transform: translate(-9px, 2px); clip-path: inset(62% 0 12% 0); }
+      70% { transform: translate(4px, 1px); clip-path: inset(38% 0 32% 0); }
+    }
+
+    .body {
+      display: grid;
+      gap: 10px;
+      padding: 13px;
+    }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .code {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 0 8px;
+      border: 1px solid rgba(24,184,198,0.25);
+      border-radius: var(--radius);
+      color: #087982;
+      background: rgba(24,184,198,0.10);
+      font-size: 12px;
+      font-weight: 1000;
+      white-space: nowrap;
+    }
+
+    .song {
+      min-width: 0;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .rarity-pill,
+    .label-stat-pill {
+      --tier-frame: none;
+      --label-pill-frame: none;
+      --label-pill-desktop-frame: none;
+      --tier-border: rgba(29, 42, 70, 0.16);
+      --tier-shadow: rgba(56, 76, 116, 0.16);
+      --tier-soft: rgba(236, 242, 252, 0.96);
+      --tier-text: #12213b;
+    }
+
+    .tier-silver {
+      --tier-frame: url('assets/rarity/silver-frame.png?v=20260417d');
+      --label-pill-frame: url('assets/rarity/label-silver.png?v=20260417d');
+      --label-pill-desktop-frame: url('assets/rarity/label-silver-desktop.png?v=20260417d');
+      --tier-shadow: rgba(117, 149, 192, 0.16);
+      --tier-soft: rgba(234, 242, 252, 0.96);
+    }
+
+    .tier-gold {
+      --tier-frame: url('assets/rarity/gold-frame.png?v=20260417d');
+      --label-pill-frame: url('assets/rarity/label-gold.png?v=20260417d');
+      --label-pill-desktop-frame: url('assets/rarity/label-gold-desktop.png?v=20260417d');
+      --tier-shadow: rgba(220, 166, 48, 0.2);
+      --tier-soft: rgba(255, 241, 201, 0.95);
+    }
+
+    .tier-color {
+      --tier-frame: url('assets/rarity/color-frame.png?v=20260417d');
+      --label-pill-frame: url('assets/rarity/label-color.png?v=20260417d');
+      --label-pill-desktop-frame: url('assets/rarity/label-color-desktop.png?v=20260417d');
+      --tier-shadow: rgba(126, 102, 233, 0.22);
+      --tier-soft: rgba(233, 237, 255, 0.95);
+    }
+
+    .tier-rainbow {
+      --tier-frame: url('assets/rarity/rainbow-frame.png?v=20260417d');
+      --label-pill-frame: url('assets/rarity/label-rainbow.png?v=20260417d');
+      --label-pill-desktop-frame: url('assets/rarity/label-rainbow-desktop.png?v=20260417d');
+      --tier-shadow: rgba(203, 63, 195, 0.26);
+      --tier-soft: rgba(255, 229, 245, 0.95);
+    }
+
+    .tier-hidden {
+      --tier-frame: url('assets/rarity/hidden-frame.png?v=20260417d');
+      --tier-shadow: rgba(182, 113, 44, 0.22);
+      --tier-soft: rgba(255, 234, 198, 0.95);
+    }
+
+    .rarity-block {
+      display: grid;
+      gap: 5px;
+      justify-items: end;
+    }
+
+    .rarity-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex: 0 0 152px;
+      width: 152px;
+      min-width: 152px;
+      min-height: 46px;
+      padding: 0 10px 0 74px;
+      border: 0;
+      background: var(--tier-frame) center / 100% 100% no-repeat;
+      box-shadow: 0 10px 18px var(--tier-shadow);
+      color: #fff;
+      font-size: 16px;
+      line-height: 1;
+      font-weight: 1000;
+      letter-spacing: 0;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .rarity-pill-text {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      align-items: center;
+      width: 88px;
+      text-align: center;
+      color: #fff;
+      font-size: 19px;
+      line-height: 1;
+      font-weight: 1000;
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1;
+    }
+
+    .rarity-pill-digit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .rarity-percent {
+      color: #36435a;
+      font-size: 11px;
+      line-height: 1.25;
+      font-weight: 900;
+      text-align: right;
+    }
+
+    .card-rarity {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .card-rarity .rarity-pill {
+      transform: scale(0.72);
+      transform-origin: top right;
+      margin-left: -42px;
+      margin-bottom: -10px;
+    }
+
+    .name {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .desc,
+    .desc-details {
+      margin: 0;
+      color: #536179;
+      font-size: 13px;
+      line-height: 1.68;
+      font-weight: 620;
+    }
+
+    .desc-details {
+      border-top: 1px solid rgba(217,226,239,0.72);
+      padding-top: 8px;
+    }
+
+    .desc-details summary {
+      cursor: pointer;
+      color: #0b7f8c;
+      font-size: 12px;
+      line-height: 1.35;
+      font-weight: 1000;
+      list-style-position: inside;
+    }
+
+    .desc-details p {
+      margin: 8px 0 0;
+    }
+
+    .label-stat-item {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(213,223,240,0.9);
+    }
+
+    .label-stat-pill {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      width: 100%;
+      min-height: 40px;
+      padding: 0 14px;
+      border: 0;
+      background: var(--label-pill-frame) center / 100% 100% no-repeat;
+      color: #fff;
+      font-size: 16px;
+      line-height: 1;
+      font-weight: 900;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
+      position: relative;
+      isolation: isolate;
+      text-shadow: none;
+      -webkit-text-stroke: 0 transparent;
+    }
+
+    .outlined-label-text {
+      position: relative;
+      z-index: 0;
+      display: block;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      line-height: 1.12;
+      color: transparent;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    .outlined-label-text::before {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      display: block;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: transparent;
+      text-shadow: none;
+      -webkit-text-stroke: var(--result-label-stroke-width) var(--result-label-stroke-color);
+      pointer-events: none;
+    }
+
+    .outlined-label-fill {
+      position: relative;
+      z-index: 1;
+      display: block;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #fff;
+      text-shadow: 0 2px 4px rgba(24, 16, 12, 0.38);
+      -webkit-text-stroke: 0 transparent;
+    }
+
+    .label-card {
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+      border: 1px solid rgba(217,226,239,0.94);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.94);
+      box-shadow: 0 12px 24px rgba(76, 92, 132, 0.10);
+    }
+
+    .label-card .label-stat-item {
+      padding: 0;
+      border-bottom: 0;
+    }
+
+    .label-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      color: #617089;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .badge-card {
+      display: grid;
+      gap: 12px;
+      min-height: 178px;
+      padding: 16px;
+      border: 1px solid rgba(217,226,239,0.94);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.96), rgba(247,250,255,0.94)),
+        var(--paper-strong);
+      box-shadow: 0 12px 24px rgba(76, 92, 132, 0.10);
+    }
+
+    .badge-card.is-combo {
+      border-color: rgba(255,92,158,0.24);
+      background:
+        linear-gradient(135deg, rgba(255,92,158,0.12), rgba(255,212,93,0.14) 44%, rgba(24,184,198,0.12)),
+        rgba(255,255,255,0.96);
+    }
+
+    .badge-card.is-label {
+      border-color: rgba(57,196,143,0.24);
+    }
+
+    .badge-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .badge-name {
+      margin: 0;
+      font-size: 19px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .tag {
+      flex: 0 0 auto;
+      padding: 5px 8px;
+      border-radius: var(--radius);
+      background: #1d2433;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 950;
+    }
+
+    .badge-desc {
+      margin: 0;
+      color: #4f5d74;
+      font-size: 13px;
+      line-height: 1.72;
+      font-weight: 630;
+    }
+
+    .error {
+      margin-top: 24px;
+      padding: 18px;
+      border: 1px solid rgba(255,95,122,0.34);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.94);
+      color: #9c2540;
+      font-weight: 850;
+    }
+
+    [hidden] { display: none !important; }
+
+    @keyframes wmtiSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes wmtiSpinReverse {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+
+    @keyframes wmtiFloat {
+      from { transform: translateY(0px); }
+      to { transform: translateY(-12px); }
+    }
+
+    @keyframes wmtiPatternSpin {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @keyframes wmtiOfficialRise {
+      0% { transform: translateY(150%); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-150%); opacity: 0; }
+    }
+
+    @keyframes wmtiTilt {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(90deg); }
+    }
+
+    @media (min-width: 641px) {
+      .label-stat-pill {
+        min-height: 62px;
+        padding: 0 24px;
+        background: var(--label-pill-desktop-frame) center center / contain no-repeat;
+        font-size: 19px;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .stats {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .grid,
+      .grid.is-badge {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      .page {
+        width: min(100% - 22px, var(--maxw));
+        padding-top: 16px;
+      }
+
+      .maimai-bg-pattern {
+        top: 50%;
+        left: 50%;
+        width: max(120vw, 100vh);
+        height: max(120vw, 100vh);
+        opacity: 0.36;
+      }
+
+      .maimai-bg-circle.a { width: 122vw; height: 122vw; }
+      .maimai-bg-circle.b { width: 92vw; height: 92vw; }
+      .maimai-bg-circle.c { width: 72vw; height: 72vw; }
+      .maimai-bg-corner.tl { width: 88vw; height: 28vw; }
+      .maimai-bg-corner.tr { width: 44vw; height: 52vw; }
+      .maimai-bg-corner.bl {
+        width: 34vw;
+        height: 44vw;
+        left: -1px;
+        bottom: -1px;
+        background-position: left bottom;
+        background-size: auto 100%;
+      }
+      .maimai-bg-corner.br { width: 88vw; height: 30vw; }
+      .maimai-bg-tile.a {
+        width: 78px;
+        height: 260px;
+        left: auto;
+        right: 4%;
+      }
+      .maimai-bg-tile.b {
+        width: 64px;
+        height: 240px;
+        left: 4%;
+        right: auto;
+      }
+      .maimai-bg-tile.c {
+        width: 48px;
+        height: 170px;
+        right: 20%;
+      }
+      .maimai-bg-star.a { left: 12%; top: 18%; }
+      .maimai-bg-star.b { right: 14%; top: 42%; }
+      .maimai-bg-star.c { right: -2%; top: 68%; }
+      .maimai-bg-star.d { right: 38%; top: 48%; }
+      .maimai-bg-3d.cube-small {
+        width: 42px;
+        height: 42px;
+        top: 22vw;
+        left: 7vw;
+      }
+      .maimai-bg-3d.cube {
+        width: 54px;
+        height: 50px;
+        top: 82vw;
+        right: 6vw;
+      }
+      .maimai-bg-3d.star-small {
+        width: 24px;
+        height: 28px;
+        top: 34vw;
+        right: 45vw;
+      }
+      .maimai-bg-3d.stars {
+        width: 50px;
+        height: 42px;
+        top: 122vw;
+        right: 22vw;
+      }
+      .maimai-bg-3d.glove-blue {
+        width: 38px;
+        height: 42px;
+        top: 16vw;
+        left: 62vw;
+      }
+      .maimai-bg-3d.glove-pink {
+        width: 56px;
+        height: 66px;
+        top: 13vw;
+        left: 48vw;
+      }
+
+      .hero {
+        padding: 18px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .grid,
+      .grid.is-badge {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .body,
+      .label-card {
+        padding: 10px;
+      }
+
+      .name,
+      .badge-name {
+        font-size: 14px;
+      }
+
+      .song,
+      .code,
+      .rarity-percent,
+      .label-meta {
+        font-size: 10px;
+      }
+
+      .card-rarity {
+        display: grid;
+        gap: 6px;
+      }
+
+      .card-rarity .rarity-block {
+        justify-items: start;
+      }
+
+      .rarity-pill,
+      .card-rarity .rarity-pill,
+      .label-stat-item .rarity-pill {
+        width: 132px;
+        min-width: 132px;
+        flex-basis: 132px;
+        min-height: 40px;
+        padding: 0 8px 0 64px;
+        transform: none;
+        margin: 0;
+      }
+
+      .rarity-pill-text {
+        width: 64px;
+        font-size: 16px;
+      }
+
+      .label-stat-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .label-stat-pill {
+        min-height: 34px;
+        padding: 0 10px;
+        font-size: 13px;
+      }
+
+      .label-stat-item .rarity-block {
+        justify-items: start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="maimai-bg use-official-assets" aria-hidden="true">
+    <div class="maimai-bg-pattern"></div>
+    <div class="maimai-bg-circle a"></div>
+    <div class="maimai-bg-circle b"></div>
+    <div class="maimai-bg-circle c"></div>
+    <div class="maimai-bg-corner tl"></div>
+    <div class="maimai-bg-corner tr"></div>
+    <div class="maimai-bg-corner bl"></div>
+    <div class="maimai-bg-corner br"></div>
+    <div class="maimai-bg-tile a"></div>
+    <div class="maimai-bg-tile b"></div>
+    <div class="maimai-bg-tile c"></div>
+    <div class="maimai-bg-star a"></div>
+    <div class="maimai-bg-star b"></div>
+    <div class="maimai-bg-star c"></div>
+    <div class="maimai-bg-star d"></div>
+    <div class="maimai-bg-orbit a"></div>
+    <div class="maimai-bg-orbit b"></div>
+    <div class="maimai-bg-orbit c"></div>
+    <div class="maimai-bg-rotation">
+      <div class="maimai-bg-3d cube-small"></div>
+      <div class="maimai-bg-3d cube"></div>
+      <div class="maimai-bg-3d star-small"></div>
+      <div class="maimai-bg-3d stars"></div>
+      <div class="maimai-bg-3d glove-blue"></div>
+      <div class="maimai-bg-3d glove-pink"></div>
+    </div>
+  </div>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">WMTI Archive</div>
+      <h1>全人格图鉴</h1>
+      <p class="hero-copy">表人格、里人格、称号、彩称号与隐藏人格都会在这里归档。触发方法保持封存，只留下名字、曲绘和一点可供回味的文字。</p>
+      <div class="stats" id="stats"></div>
+      <div class="last-result-panel" id="last-result-panel" hidden>
+        <p class="last-result-title">上次测试获得</p>
+        <div class="last-result-tags" id="last-result-tags"></div>
+      </div>
+    </section>
+
+    <div id="error" class="error" hidden></div>
+
+    <section class="section" id="outer-section">
+      <div class="section-head">
+        <h2>表人格</h2>
+        <div class="section-count" id="outer-count"></div>
+      </div>
+      <div class="grid" id="outer-grid"></div>
+    </section>
+
+    <section class="section" id="inner-section">
+      <div class="section-head">
+        <h2>里人格</h2>
+        <div class="section-count" id="inner-count"></div>
+      </div>
+      <div class="grid" id="inner-grid"></div>
+    </section>
+
+    <section class="section" id="combo-section">
+      <div class="section-head">
+        <h2>彩称号</h2>
+        <div class="section-count" id="combo-count"></div>
+      </div>
+      <div class="grid is-badge" id="combo-grid"></div>
+    </section>
+
+    <section class="section" id="label-section">
+      <div class="section-head">
+        <h2>称号</h2>
+        <div class="section-count" id="label-count"></div>
+      </div>
+      <div class="grid is-badge" id="label-grid"></div>
+    </section>
+
+    <section class="section" id="hidden-section">
+      <div class="section-head">
+        <h2>隐藏人格</h2>
+        <div class="section-count" id="hidden-count"></div>
+      </div>
+      <div class="grid" id="hidden-grid"></div>
+    </section>
+  </main>
+
+  <script src="./vendor/cloudbase.js"></script>
+  <script src="./public-app-config.js"></script>
+  <script>
+    const CONFIG_URL = './maimai_profile_test_config_v2.json';
+    const ASSET_VERSION = '20260419-atlas-b';
+    const RUNTIME_CONFIG = window.__WMTI_RUNTIME__ || {};
+    const CLOUDBASE_ENV_ID = RUNTIME_CONFIG.cloudbaseEnvId || '';
+    const CLOUDBASE_REGION = RUNTIME_CONFIG.cloudbaseRegion || 'ap-shanghai';
+    const CLOUDBASE_PUBLISHABLE_KEY = RUNTIME_CONFIG.cloudbasePublishableKey || '';
+    const SUBMIT_RESULT_STAT_FUNCTION_NAME = 'submitResultStat';
+    const LAST_RESULT_STORAGE_KEY = 'wmti:last-result-v1';
+    const ORACLE_ENTRY_STORAGE_KEY = 'wmti:oracle-entry-v1';
+    const ORACLE_ENTRY_TARGET = './index.html#oracle';
+
+    const COMBO_BADGES = [
+      {
+        id: 'cb01',
+        name: '万花筒挑战者',
+        description: '喷不了，这是真大神，万花筒模式享受者！',
+        priority: 100
+      },
+      {
+        id: 'cb02',
+        name: '手癖重灾区',
+        description: '你的机台修行史，就是一部与自身肌肉搏斗的血泪史。你总能在不可思议的地方开发出独属于自己的“人体工学”，然后被它深深反噬。别人打歌看的是底力，你打歌靠的是如何骗过自己那双充满了自主意识的手。',
+        priority: 96
+      },
+      {
+        id: 'cb03',
+        name: '舞萌TV',
+        description: '你不是普通意义上的有存在感，你是那种走到哪都自带节目效果的“活体综艺”。别人未必记得你今天出了什么分，但绝对会对你那种“怎么又是你啊”的难绷气场印象深刻。某种角度上，你本人就是当地舞萌生态的一部分。',
+        priority: 92
+      },
+      {
+        id: 'cb04',
+        name: '暗黑心理学',
+        description: '暗黑心理学，社交的手腕。我才不要和你拼机口牙！',
+        priority: 88
+      },
+      {
+        id: 'cb05',
+        name: '小时候不懂事',
+        description: '如果能坐时光机回到过去，你最想做的事大概是抽当时的自己两巴掌。早知如此何必当初呢！看着屏幕上那些卡在尴尬百分比的成绩，你只能感叹一句：小时候不懂事...',
+        priority: 84
+      },
+      {
+        id: 'cb06',
+        name: '大水淹没了整座城市',
+        description: '那一天，神明把你 B50 里的水分都拿了出来，那场大水淹没了整座城市。',
+        priority: 80
+      },
+      {
+        id: 'cb07',
+        name: '仇人对战',
+        description: '你和人拼机的时候，不知道的以为在打“仇人对战”',
+        priority: 76
+      },
+      {
+        id: 'cb08',
+        name: '理论战神（不是101那个理论）',
+        description: '如果舞萌出个笔试，你绝对是满分状元；但站在机台前，你只能眼睁睁看着手不听使唤地把打出三A级景区。',
+        priority: 72
+      },
+      {
+        id: 'cb09',
+        name: '极品拼机搭子',
+        description: '求求你啦，和我拼机吧，我什么都会做的',
+        priority: 68
+      },
+      {
+        id: 'cb10',
+        name: '纯血底力批',
+        description: '我去，底力批屋檐了',
+        priority: 64
+      },
+      {
+        id: 'cb11',
+        name: '赤石大王',
+        description: '你是手汗哥亲传弟子吗？'
+      }
+    ];
+
+    const MYSTERY_HIDDEN = {
+      code: 'H04',
+      name: '縺薙ｌ縺ｯ陦ｨ遉ｺ縺輔ｌ縺ｪ縺',
+      kicker: '未显示',
+      summary: '1/8192的奇迹，独自一人难以缔造。请来这里拼凑你的碎片：778279896',
+      song: {
+        title: '《????????》',
+        display_title: 'NO-DATA',
+        image: './assets/atlas/h04-mystery.png',
+        alt: 'NO-DATA'
+      },
+      mystery: true
+    };
+
+    const $ = selector => document.querySelector(selector);
+
+    function escapeHtml(value) {
+      return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function withAssetVersion(src) {
+      const clean = String(src || '').trim();
+      if (!clean || /^(data:|blob:)/i.test(clean) || /[?&]v=/.test(clean)) return clean;
+      const hashIndex = clean.indexOf('#');
+      const base = hashIndex >= 0 ? clean.slice(0, hashIndex) : clean;
+      const hash = hashIndex >= 0 ? clean.slice(hashIndex) : '';
+      const separator = base.includes('?') ? '&' : '?';
+      return `${base}${separator}v=${ASSET_VERSION}${hash}`;
+    }
+
+    function writeOracleEntryState() {
+      try {
+        window.localStorage?.setItem(ORACLE_ENTRY_STORAGE_KEY, JSON.stringify({
+          version: 1,
+          unlocked: true,
+          source: 'atlas-mystery',
+          updatedAt: new Date().toISOString()
+        }));
+      } catch (error) {
+        console.warn('failed to persist oracle entry state:', error);
+      }
+    }
+
+    function attachOracleRitual() {
+      const trigger = document.querySelector('[data-oracle-entry-trigger="true"]');
+      if (!trigger) return;
+
+      let tapCount = 0;
+      let tapTimer = 0;
+      trigger.addEventListener('click', () => {
+        tapCount += 1;
+        trigger.classList.add('is-owned');
+        if (tapTimer) window.clearTimeout(tapTimer);
+        tapTimer = window.setTimeout(() => {
+          tapCount = 0;
+          tapTimer = 0;
+        }, 2000);
+        if (tapCount < 7) return;
+        tapCount = 0;
+        if (tapTimer) {
+          window.clearTimeout(tapTimer);
+          tapTimer = 0;
+        }
+        writeOracleEntryState();
+        window.location.assign(ORACLE_ENTRY_TARGET);
+      });
+    }
+
+    async function loadConfig() {
+      const response = await fetch(`${CONFIG_URL}?v=${Date.now()}`, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`配置读取失败：${response.status}`);
+      return response.json();
+    }
+
+    let cloudAppInstance = null;
+    let cloudAuthReadyPromise = null;
+
+    function getCloudApp() {
+      if (cloudAppInstance) return cloudAppInstance;
+      if (!CLOUDBASE_ENV_ID || !CLOUDBASE_PUBLISHABLE_KEY) return null;
+      if (typeof window.tcb === 'undefined') return null;
+      cloudAppInstance = window.tcb.init({
+        env: CLOUDBASE_ENV_ID,
+        region: CLOUDBASE_REGION,
+        accessKey: CLOUDBASE_PUBLISHABLE_KEY,
+        auth: { detectSessionInUrl: true }
+      });
+      return cloudAppInstance;
+    }
+
+    async function ensureCloudAuth() {
+      const cloudApp = getCloudApp();
+      if (!cloudApp) return null;
+      if (!cloudAuthReadyPromise) {
+        cloudAuthReadyPromise = (async () => {
+          const auth = typeof cloudApp.auth === 'function' ? cloudApp.auth() : cloudApp.auth;
+          if (!auth) return cloudApp;
+
+          if (typeof auth.getSession === 'function') {
+            const sessionResult = await auth.getSession();
+            const session = sessionResult?.data?.session || sessionResult?.session || null;
+            if (session?.access_token) return cloudApp;
+          }
+
+          const state = await auth.getLoginState?.();
+          if (state?.isAnonymousAuth || state?.uid) return cloudApp;
+
+          if (typeof auth.signInAnonymously === 'function') {
+            const signInResult = await auth.signInAnonymously();
+            if (signInResult?.error) throw signInResult.error;
+            return cloudApp;
+          }
+
+          const provider = auth.anonymousAuthProvider?.();
+          if (provider?.signIn) await provider.signIn();
+          return cloudApp;
+        })().catch(error => {
+          console.warn('atlas stats auth failed:', error);
+          cloudAuthReadyPromise = null;
+          return null;
+        });
+      }
+      return cloudAuthReadyPromise;
+    }
+
+    async function loadAtlasStats() {
+      const cloudApp = await ensureCloudAuth();
+      if (!cloudApp) return null;
+      try {
+        const response = await cloudApp.callFunction({
+          name: SUBMIT_RESULT_STAT_FUNCTION_NAME,
+          data: { action: 'atlasStats' }
+        });
+        const result = response?.result || null;
+        return result?.ok ? result : null;
+      } catch (error) {
+        console.warn('atlas stats failed:', error);
+        return null;
+      }
+    }
+
+    function getSongByName(map, name) {
+      const entry = map?.[name] || {};
+      return {
+        title: entry.title || '',
+        displayTitle: entry.display_title || entry.title || '',
+        image: entry.image || '',
+        alt: entry.alt || ''
+      };
+    }
+
+    function buildTypeItems(config, kind) {
+      const ruleKey = `${kind}_type_rules`;
+      const songKey = `${kind}_by_type`;
+      const entries = Object.entries(config[ruleKey]?.by_signature || {});
+      const songMap = config.song_title_rules?.[songKey] || {};
+      return entries
+        .map(([signature, type]) => ({
+          signature,
+          code: type.code,
+          name: type.name,
+          description: type.description,
+          song: getSongByName(songMap, type.name)
+        }))
+        .sort((left, right) => String(left.code).localeCompare(String(right.code), 'zh-CN', { numeric: true }));
+    }
+
+    function buildLabelItems(config) {
+      const axisConf = config.axes?.label || {};
+      const labels = config.label_rules?.labels || {};
+      return Object.entries(labels).flatMap(([axisCode, sides]) => {
+        const axisName = axisConf[axisCode]?.name || axisCode;
+        return ['left', 'right'].map(side => ({
+          id: `${axisCode}:${side}`,
+          axisCode,
+          axisName,
+          side,
+          name: sides?.[side]?.name || '',
+          description: sides?.[side]?.description || ''
+        }));
+      });
+    }
+
+    function buildHiddenItems(config) {
+      const specials = Object.values(config.special_cases?.rules || {})
+        .filter(rule => rule && rule.enabled !== false);
+      return [
+        config.hidden?.result,
+        ...specials,
+        MYSTERY_HIDDEN
+      ].filter(Boolean);
+    }
+
+    function renderStats(counts) {
+      const stats = [
+        ['表人格', counts.outer],
+        ['里人格', counts.inner],
+        ['彩称号', counts.combo],
+        ['称号', counts.label],
+        ['隐藏人格', counts.hidden],
+        ['总计', counts.total]
+      ];
+      $('#stats').innerHTML = stats.map(([label, value]) => `
+        <div class="stat">
+          <strong>${value}</strong>
+          <span>${escapeHtml(label)}</span>
+        </div>
+      `).join('');
+    }
+
+    function getTierClass(tier) {
+      const normalized = String(tier || 'silver').replace(/[^a-zA-Z0-9_-]/g, '_');
+      return `tier-${normalized}`;
+    }
+
+    function buildOutlinedLabelMarkup(text) {
+      const escaped = escapeHtml(text || '');
+      return `<span class="outlined-label-text" data-text="${escaped}"><span class="outlined-label-fill">${escaped}</span></span>`;
+    }
+
+    function buildRarityPillMarkup(score) {
+      const numeric = Number(score);
+      const display = Number.isFinite(numeric)
+        ? String(Math.round(numeric)).padStart(5, '0').slice(0, 5)
+        : '-----';
+      const digits = [...display]
+        .map(char => `<span class="rarity-pill-digit">${escapeHtml(char)}</span>`)
+        .join('');
+      return `<span class="rarity-pill-text">${digits}</span>`;
+    }
+
+    function getFallbackStat(kind) {
+      if (kind === 'combo') {
+        return { tier: 'rainbow', rarityScore: 16000, percent: null, rank: 0 };
+      }
+      if (kind === 'hidden') {
+        return { tier: 'hidden', tierType: 'hidden', rarityScore: 16000, percent: null, rank: 0 };
+      }
+      return { tier: 'silver', rarityScore: 13000, percent: null, rank: 0 };
+    }
+
+    function getItemStat(item, kind) {
+      return item?.stat || getFallbackStat(kind);
+    }
+
+    function readLastResultSnapshot() {
+      try {
+        const raw = window.localStorage?.getItem(LAST_RESULT_STORAGE_KEY);
+        if (!raw) return null;
+        const parsed = JSON.parse(raw);
+        return parsed && typeof parsed === 'object' ? parsed : null;
+      } catch (error) {
+        console.warn('last result snapshot unavailable:', error);
+        return null;
+      }
+    }
+
+    function buildLastResultMarkers(snapshot) {
+      const empty = {
+        outerCodes: new Set(),
+        innerCodes: new Set(),
+        hiddenCodes: new Set(),
+        comboIds: new Set(),
+        labelKeys: new Set(),
+        tags: []
+      };
+      if (!snapshot) return empty;
+
+      const addTag = (prefix, item) => {
+        const name = String(item?.name || '').trim();
+        if (name) empty.tags.push(`${prefix}：${name}`);
+      };
+
+      if (snapshot.outer?.code) {
+        empty.outerCodes.add(snapshot.outer.code);
+        addTag('表人格', snapshot.outer);
+      }
+      if (snapshot.inner?.code) {
+        empty.innerCodes.add(snapshot.inner.code);
+        addTag('里人格', snapshot.inner);
+      }
+      if (snapshot.hidden?.code) {
+        empty.hiddenCodes.add(snapshot.hidden.code);
+        addTag(snapshot.isSuperPersona ? '超级隐藏人格' : '隐藏人格', snapshot.hidden);
+      }
+      (snapshot.comboBadges || []).forEach(item => {
+        if (item?.id) empty.comboIds.add(item.id);
+        addTag('彩称号', item);
+      });
+      (snapshot.labels || []).forEach(item => {
+        if (item?.axisCode && item?.side) empty.labelKeys.add(`${item.axisCode}:${item.side}`);
+        addTag('称号', item);
+      });
+      return empty;
+    }
+
+    function renderLastResultPanel(markers) {
+      const panel = $('#last-result-panel');
+      const tags = $('#last-result-tags');
+      if (!markers?.tags?.length) {
+        panel.hidden = true;
+        tags.innerHTML = '';
+        return;
+      }
+      tags.innerHTML = markers.tags
+        .map(text => `<span class="last-result-tag">${escapeHtml(text)}</span>`)
+        .join('');
+      panel.hidden = false;
+    }
+
+    function isOwnedItem(item, kind, markers) {
+      if (!markers) return false;
+      if (kind === 'outer') return markers.outerCodes.has(item.code);
+      if (kind === 'inner') return markers.innerCodes.has(item.code);
+      if (kind === 'hidden') return markers.hiddenCodes.has(item.code);
+      if (kind === 'combo') return markers.comboIds.has(item.id);
+      if (kind === 'label') return markers.labelKeys.has(`${item.axisCode}:${item.side}`);
+      return false;
+    }
+
+    function renderOwnedRibbon(isOwned) {
+      return isOwned ? '<div class="owned-ribbon">上次获得</div>' : '';
+    }
+
+    function formatPercent(stat) {
+      const hasPercent = stat?.percent !== null && stat?.percent !== undefined && stat?.percent !== '';
+      const percent = hasPercent ? Number(stat.percent) : NaN;
+      const rank = Number(stat?.rank || 0);
+      const percentText = Number.isFinite(percent) ? `${percent.toFixed(2)}%` : '--';
+      return `实测 ${percentText} · ${rank}次`;
+    }
+
+    function renderRarityBlock(stat, kind) {
+      const effective = stat || getFallbackStat(kind);
+      const tier = effective.tierType === 'hidden' ? 'hidden' : (effective.tier || getFallbackStat(kind).tier);
+      return `
+        <div class="rarity-block">
+          <div class="rarity-pill ${getTierClass(tier)}">${buildRarityPillMarkup(effective.rarityScore)}</div>
+          <div class="rarity-percent">${escapeHtml(formatPercent(effective))}</div>
+        </div>
+      `;
+    }
+
+    function renderDescription(text) {
+      const clean = String(text || '').trim();
+      if (!clean) return '';
+      return `
+        <details class="desc-details">
+          <summary>展开描述</summary>
+          <p>${escapeHtml(clean)}</p>
+        </details>
+      `;
+    }
+
+    function renderTypeGrid(target, items, kind, markers) {
+      target.innerHTML = items.map(item => {
+        const songTitle = item.song.displayTitle || item.song.title || item.code;
+        const stat = getItemStat(item, kind);
+        const isOwned = isOwnedItem(item, kind, markers);
+        return `
+          <article class="card${isOwned ? ' is-owned' : ''}">
+            ${renderOwnedRibbon(isOwned)}
+            <div class="art">
+              <img src="${escapeHtml(withAssetVersion(item.song.image))}" alt="${escapeHtml(item.song.alt || item.name)}" loading="lazy" />
+            </div>
+            <div class="body">
+              <div class="meta">
+                <span class="code">${escapeHtml(item.code)}</span>
+                <span class="song">${escapeHtml(songTitle)}</span>
+              </div>
+              <div class="card-rarity">
+                <h3 class="name">${escapeHtml(item.name)}</h3>
+                ${renderRarityBlock(stat, kind)}
+              </div>
+              ${renderDescription(item.description)}
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function renderBadgeGrid(target, items, kind, tagText, markers) {
+      target.innerHTML = items.map(item => {
+        const isOwned = isOwnedItem(item, kind, markers);
+        return `
+        <article class="label-card${isOwned ? ' is-owned' : ''}">
+          ${renderOwnedRibbon(isOwned)}
+          <div class="label-stat-item">
+            <div class="label-stat-pill ${getTierClass(getItemStat(item, kind).tier)}" title="${escapeHtml(item.name)}">
+              ${buildOutlinedLabelMarkup(item.name)}
+            </div>
+            ${renderRarityBlock(getItemStat(item, kind), kind)}
+          </div>
+          <div class="label-meta">
+            <span>${escapeHtml(tagText(item))}</span>
+            <span>${escapeHtml(item.id || `${item.axisCode}:${item.side}` || '')}</span>
+          </div>
+          ${renderDescription(item.description)}
+        </article>
+      `;
+      }).join('');
+    }
+
+    function renderHiddenGrid(target, items, markers) {
+      target.innerHTML = items.map(item => {
+        const song = item.song || {};
+        const songTitle = song.display_title || song.displayTitle || song.title || '';
+        const stat = getItemStat(item, 'hidden');
+        const shouldShowRarity = !item.mystery && item.code !== 'H04';
+        const isOwned = isOwnedItem(item, 'hidden', markers);
+        let art = `<div class="art"><img src="${escapeHtml(withAssetVersion(song.image))}" alt="${escapeHtml(song.alt || item.name)}" loading="lazy" /></div>`;
+        if (item.mystery) {
+          art = song.image
+            ? `<div class="art is-mystery has-mystery-image"><img src="${escapeHtml(withAssetVersion(song.image))}" alt="${escapeHtml(song.alt || item.name)}" loading="lazy" /><span class="mystery-signal" aria-hidden="true"></span><div class="glitch-core" data-text="${escapeHtml(item.name)}">${escapeHtml(item.name)}</div></div>`
+            : `<div class="art is-mystery"><span class="glitch-snow" aria-hidden="true"></span><div class="glitch-core" data-text="${escapeHtml(item.name)}">${escapeHtml(item.name)}</div></div>`;
+        }
+        return `
+          <article class="card${isOwned ? ' is-owned' : ''}"${item.code === 'H04' ? ' data-oracle-entry-trigger="true"' : ''}>
+            ${renderOwnedRibbon(isOwned)}
+            ${art}
+            <div class="body">
+              <div class="meta">
+                <span class="code">${escapeHtml(item.code)}</span>
+                <span class="song">${escapeHtml(songTitle)}</span>
+              </div>
+              <div class="card-rarity">
+                <h3 class="name">${escapeHtml(item.name)}</h3>
+                ${shouldShowRarity ? renderRarityBlock(stat, 'hidden') : ''}
+              </div>
+              ${renderDescription(item.summary || item.description)}
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function setCount(id, count) {
+      $(id).textContent = `${count} entries`;
+    }
+
+    function showError(error) {
+      $('#error').hidden = false;
+      $('#error').textContent = `${error.message || error}`;
+    }
+
+    function mapBy(items, keySelector) {
+      return new Map((items || []).map(item => [keySelector(item), item]));
+    }
+
+    function attachAtlasStats({ outer, inner, labels, combo, hidden }, statResult) {
+      const outerStats = mapBy(statResult?.personaStats?.outer, item => item.code);
+      const innerStats = mapBy(statResult?.personaStats?.inner, item => item.code);
+      const hiddenStats = mapBy(statResult?.personaStats?.hidden, item => item.code);
+      const labelStats = mapBy(statResult?.labelStats, item => `${item.axisCode}:${item.side}`);
+      const comboStats = mapBy(statResult?.comboBadgeStats, item => item.id);
+
+      outer.forEach(item => { item.stat = outerStats.get(item.code) || null; });
+      inner.forEach(item => { item.stat = innerStats.get(item.code) || null; });
+      labels.forEach(item => { item.stat = labelStats.get(`${item.axisCode}:${item.side}`) || null; });
+      combo.forEach(item => { item.stat = comboStats.get(item.id) || null; });
+      hidden.forEach(item => {
+        item.stat = item.mystery ? null : (hiddenStats.get(item.code) || null);
+      });
+    }
+
+    Promise.all([loadConfig(), loadAtlasStats()])
+      .then(([config, statResult]) => {
+        const outer = buildTypeItems(config, 'outer');
+        const inner = buildTypeItems(config, 'inner');
+        const labels = buildLabelItems(config);
+        const hidden = buildHiddenItems(config);
+        const combo = [...COMBO_BADGES].sort((left, right) => (right.priority || 0) - (left.priority || 0));
+        const lastResultMarkers = buildLastResultMarkers(readLastResultSnapshot());
+        attachAtlasStats({ outer, inner, labels, combo, hidden }, statResult);
+
+        renderStats({
+          outer: outer.length,
+          inner: inner.length,
+          combo: combo.length,
+          label: labels.length,
+          hidden: hidden.length,
+          total: outer.length + inner.length + combo.length + labels.length + hidden.length
+        });
+
+        setCount('#outer-count', outer.length);
+        setCount('#inner-count', inner.length);
+        setCount('#combo-count', combo.length);
+        setCount('#label-count', labels.length);
+        setCount('#hidden-count', hidden.length);
+
+        renderLastResultPanel(lastResultMarkers);
+        renderTypeGrid($('#outer-grid'), outer, 'outer', lastResultMarkers);
+        renderTypeGrid($('#inner-grid'), inner, 'inner', lastResultMarkers);
+        renderBadgeGrid($('#combo-grid'), combo, 'combo', item => item.id.toUpperCase(), lastResultMarkers);
+        renderBadgeGrid($('#label-grid'), labels, 'label', item => item.axisName, lastResultMarkers);
+        renderHiddenGrid($('#hidden-grid'), hidden, lastResultMarkers);
+        attachOracleRitual();
+      })
+      .catch(showError);
+  </script>
+</body>
+</html>
