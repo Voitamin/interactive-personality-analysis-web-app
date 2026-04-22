@@ -2,15 +2,25 @@
 
 Public portfolio snapshot of a Tencent CloudBase web app I built for large-scale personality test experiences and share-driven result pages.
 
-## UI surfaces
+## Product screenshots
 
-![Experience overview](docs/screenshots/experience-overview.svg)
+![Archive desktop view](docs/screenshots/archive-desktop.png)
 
-![Archive mobile view](docs/screenshots/archive-mobile.svg)
+![Archive mobile view](docs/screenshots/archive-mobile.png)
 
-## Frontend and backend flow
+![Result sample](docs/screenshots/result-sample.png)
 
-![CloudBase flow](docs/screenshots/cloudbase-flow.svg)
+## Frontend and CloudBase flow
+
+```mermaid
+flowchart LR
+    A[Static frontend<br/>index.html / persona_atlas.html] --> B[resolveResult<br/>score + result generation]
+    A --> C[submitResultStat<br/>submission analytics + rarity stats]
+    A --> D[oracleLab<br/>unlock logic + progression state]
+    B --> E[(CloudBase data)]
+    C --> E
+    D --> E
+```
 
 ## What I personally implemented
 
@@ -19,11 +29,6 @@ Public portfolio snapshot of a Tencent CloudBase web app I built for large-scale
 - Implemented CloudBase functions for result resolution, submission tracking, rarity analytics, and rate limiting
 - Added the archive / oracle progression layer and the supporting function-side state model
 - Drove the production deployment flow on Tencent CloudBase and iterated on real-user product polish
-
-## Public repo note
-
-This public repository intentionally replaces original game illustration assets with portfolio-safe placeholder graphics.
-The interactive logic, configuration structure, and CloudBase function code are preserved for review.
 
 ## Highlights
 
@@ -39,7 +44,6 @@ This repository is a cleaned public version prepared for portfolio review.
 - Keeps the core frontend experience, assets, and CloudBase function code
 - Removes deployment artifacts, local backups, generated snapshots, and `node_modules`
 - Replaces production CloudBase identifiers and publishable keys with placeholders
-- Replaces copyrighted source artwork with public-safe placeholder visuals
 
 ## Project Structure
 
@@ -47,7 +51,6 @@ This repository is a cleaned public version prepared for portfolio review.
 - `persona_atlas.html`: follow-up atlas / rarity view
 - `maimai_profile_test_config_v2.json`: configuration-driven quiz and result content
 - `assets/`: production visual assets and embedded motion assets
-- `assets/placeholders/`: public-safe replacement visuals for removed artwork
 - `vendor/`: browser-ready CloudBase and QR code libraries
 - `cloudfunctions/`: backend logic for result resolution, submission tracking, and oracle flows
 - `docs/screenshots/`: screenshots for quick review
