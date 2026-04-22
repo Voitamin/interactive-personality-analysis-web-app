@@ -2,13 +2,13 @@
 
 Public portfolio snapshot of a Tencent CloudBase web app I built for large-scale personality test experiences and share-driven result pages.
 
-## Product screenshots
+## Product and deployment snapshots
 
 ![Archive desktop view](docs/screenshots/archive-desktop.png)
 
-![Archive mobile view](docs/screenshots/archive-mobile.png)
+![CloudBase usage overview](docs/screenshots/cloudbase-usage.png)
 
-![Result sample](docs/screenshots/result-sample.png)
+![Total submissions snapshot](docs/screenshots/submission-count.png)
 
 ## Frontend and CloudBase flow
 
